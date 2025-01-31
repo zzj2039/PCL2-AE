@@ -13,7 +13,7 @@ Friend Module ModSecret
 #Region "杂项"
 
     '在开源版的注册表与常规版的注册表隔离，以防数据冲突
-    Public Const RegFolder As String = "PCLCE"
+    Public Const RegFolder As String = "PCLAE"
     '用于微软登录的 ClientId
     Public Const OAuthClientId As String = ""
     'CurseForge API Key
@@ -52,15 +52,14 @@ Friend Module ModSecret
         End If
         '开源版本提示
         If Setup.Get("UiLauncherCEHint") Then
-            MyMsgBox($"你正在使用来自 PCL-Community 的 PCL2 社区版本，遇到问题请不要向官方仓库反馈！
-PCL-Community 及其成员与龙腾猫跃无从属关系，且均不会为您的使用做担保。
+            MyMsgBox($"你正在使用来自 McHMR 的 PCL2 Auto-update Edition，为开源的社区版本，遇到问题请不要向官方仓库反馈！
+PCL2-AE 及其成员与龙腾猫跃无从属关系，且均不会为您的使用做担保。
 
-该版本中暂时无法使用以下特性：
-- 更新与联网通知：在做了在做了.jpg
-- 主题切换：这是需要赞助解锁的纪念性质的功能，社区版不会制作
+该版本中无法使用以下特性：
+- 启动器的自动更新：因为不同的版本需要适配不同的 McHMR 所以仅限服主手动给用户更新；
+- 主题切换：这是 PCL2 官方版本的特殊功能，PCL2-AE 不会去制作。
 
-该版本中的以下特性与原版有所区别：
-- 百宝箱：主线分支没有提供相关内容", "社区版本说明", "我知道了")
+该版本中会移除部分功能，例如联机模块等。", "自动更新社区版本说明", "我知道了")
         End If
     End Sub
 
@@ -68,8 +67,8 @@ PCL-Community 及其成员与龙腾猫跃无从属关系，且均不会为您的
     ''' 获取设备标识码。
     ''' </summary>
     Friend Function SecretGetUniqueAddress() As String
-        Dim code As String = "PCL2-CECE-GOOD-2024"
-        Dim rawCode As String = "4202-DOOG-ECEC-2LCP"
+        Dim code As String = "PCL2-AEaE-GOOD-2025"
+        Dim rawCode As String = "5202-DOOG-EAEA-2LCP"
         Try
             Dim searcher As New ManagementObjectSearcher("select ProcessorId from Win32_Processor") ' 获取 CPU 序列号
             For Each obj As ManagementObject In searcher.Get()
@@ -404,130 +403,130 @@ PCL-Community 及其成员与龙腾猫跃无从属关系，且均不会为您的
     Public IsUpdateStarted As Boolean = False
     Public IsUpdateWaitingRestart As Boolean = False
     Public Sub UpdateCheckByButton()
-        Hint("正在获取更新信息...")
-        If IsUpdateStarted Then
-            Exit Sub
-        End If
-        Dim LatestReleaseInfoJson As JObject = Nothing
-        Dim LatestVersion As String = Nothing
-        RunInNewThread(Sub()
-                           Try
-                               LatestReleaseInfoJson = GetJson(NetRequestRetry("https://api.github.com/repos/PCL-Community/PCL2-CE/releases/latest", "GET", "", "application/x-www-form-urlencoded"))
-                               LatestVersion = LatestReleaseInfoJson("tag_name").ToString
-                               If Not LatestVersion = VersionBaseName Then
-                                   If Not Environment.OSVersion.Version.ToString().Substring(0, 4) = "10.0" AndAlso Not LatestVersion.Substring(0, 4) = "2.9." Then
-                                       If MyMsgBox($"发现了启动器更新（版本 {LatestVersion}），但是由于你的 Windows 版本过低，不满足新版本要求。{vbCrLf}你需要更新到 Windows 10 1607 或更高版本才可以继续更新。", "启动器更新 - 系统版本过低", "升级到 Windows 10", "取消", IsWarn:=True, ForceWait:=True) = 1 Then OpenWebsite("https://www.microsoft.com/zh-cn/software-download/windows10")
-                                       Exit Sub
-                                   End If
-                                   If MyMsgBox($"发现了启动器更新（版本 {LatestVersion}），是否更新？", "启动器更新", "更新", "取消") = 1 Then
-                                       UpdateStart(LatestVersion, False)
-                                   End If
-                               Else
-                                   Hint("启动器已是最新版 " + VersionBaseName + "，无须更新啦！", HintType.Finish)
-                               End If
-                           Catch ex As Exception
-                               Log(ex, "[Update] 获取启动器更新信息失败", LogLevel.Hint)
-                               Hint("获取启动器更新信息失败，请检查网络连接", HintType.Critical)
-                           End Try
-                       End Sub)
+        'Hint("正在获取更新信息...")
+        'If IsUpdateStarted Then
+        '    Exit Sub
+        'End If
+        'Dim LatestReleaseInfoJson As JObject = Nothing
+        'Dim LatestVersion As String = Nothing
+        'RunInNewThread(Sub()
+        '                   Try
+        '                       LatestReleaseInfoJson = GetJson(NetRequestRetry("https://api.github.com/repos/PCL-Community/PCL2-CE/releases/latest", "GET", "", "application/x-www-form-urlencoded"))
+        '                       LatestVersion = LatestReleaseInfoJson("tag_name").ToString
+        '                       If Not LatestVersion = VersionBaseName Then
+        '                           If Not Environment.OSVersion.Version.ToString().Substring(0, 4) = "10.0" AndAlso Not LatestVersion.Substring(0, 4) = "2.9." Then
+        '                               If MyMsgBox($"发现了启动器更新（版本 {LatestVersion}），但是由于你的 Windows 版本过低，不满足新版本要求。{vbCrLf}你需要更新到 Windows 10 1607 或更高版本才可以继续更新。", "启动器更新 - 系统版本过低", "升级到 Windows 10", "取消", IsWarn:=True, ForceWait:=True) = 1 Then OpenWebsite("https://www.microsoft.com/zh-cn/software-download/windows10")
+        '                               Exit Sub
+        '                           End If
+        '                           If MyMsgBox($"发现了启动器更新（版本 {LatestVersion}），是否更新？", "启动器更新", "更新", "取消") = 1 Then
+        '                               UpdateStart(LatestVersion, False)
+        '                           End If
+        '                       Else
+        '                           Hint("启动器已是最新版 " + VersionBaseName + "，无须更新啦！", HintType.Finish)
+        '                       End If
+        '                   Catch ex As Exception
+        '                       Log(ex, "[Update] 获取启动器更新信息失败", LogLevel.Hint)
+        '                       Hint("获取启动器更新信息失败，请检查网络连接", HintType.Critical)
+        '                   End Try
+        '               End Sub)
     End Sub
     Public Sub UpdateStart(VersionStr As String, Slient As Boolean, Optional ReceivedKey As String = Nothing, Optional ForceValidated As Boolean = False)
-        Dim DlLink As String = "https://github.com/PCL-Community/PCL2-CE/releases/download/" + VersionStr + "/PCL2_CE.exe"
-        Dim DlTargetPath As String = Path + "PCL\Plain Craft Launcher 2.exe"
-        RunInNewThread(Sub()
-                           Try
-                               '构造步骤加载器
-                               Dim Loaders As New List(Of LoaderBase)
-                               '下载
-                               Dim Address As New List(Of String)
-                               Address.Add(DlLink)
-                               Loaders.Add(New LoaderDownload("下载更新文件", New List(Of NetFile) From {New NetFile(Address.ToArray, DlTargetPath, New FileChecker(MinSize:=1024 * 64))}) With {.ProgressWeight = 15})
-                               Loaders.Add(New LoaderTask(Of Integer, Integer)("安装更新", Sub() UpdateRestart(True)))
-                               '启动
-                               Dim Loader As New LoaderCombo(Of JObject)("启动器更新", Loaders)
-                               Loader.Start()
-                               LoaderTaskbarAdd(Loader)
-                               FrmMain.BtnExtraDownload.ShowRefresh()
-                               FrmMain.BtnExtraDownload.Ribble()
-                           Catch ex As Exception
-                               Log(ex, "[Update] 下载启动器更新文件失败", LogLevel.Hint)
-                               Hint("下载启动器更新文件失败，请检查网络连接", HintType.Critical)
-                           End Try
-                       End Sub)
+        'Dim DlLink As String = "https://github.com/PCL-Community/PCL2-CE/releases/download/" + VersionStr + "/PCL2_CE.exe"
+        'Dim DlTargetPath As String = Path + "PCL\Plain Craft Launcher 2.exe"
+        'RunInNewThread(Sub()
+        '                   Try
+        '                       '构造步骤加载器
+        '                       Dim Loaders As New List(Of LoaderBase)
+        '                       '下载
+        '                       Dim Address As New List(Of String)
+        '                       Address.Add(DlLink)
+        '                       Loaders.Add(New LoaderDownload("下载更新文件", New List(Of NetFile) From {New NetFile(Address.ToArray, DlTargetPath, New FileChecker(MinSize:=1024 * 64))}) With {.ProgressWeight = 15})
+        '                       Loaders.Add(New LoaderTask(Of Integer, Integer)("安装更新", Sub() UpdateRestart(True)))
+        '                       '启动
+        '                       Dim Loader As New LoaderCombo(Of JObject)("启动器更新", Loaders)
+        '                       Loader.Start()
+        '                       LoaderTaskbarAdd(Loader)
+        '                       FrmMain.BtnExtraDownload.ShowRefresh()
+        '                       FrmMain.BtnExtraDownload.Ribble()
+        '                   Catch ex As Exception
+        '                       Log(ex, "[Update] 下载启动器更新文件失败", LogLevel.Hint)
+        '                       Hint("下载启动器更新文件失败，请检查网络连接", HintType.Critical)
+        '                   End Try
+        '               End Sub)
     End Sub
     Public Sub UpdateRestart(TriggerRestartAndByEnd As Boolean)
-        IsUpdateWaitingRestart = True
-        Try
-            Dim fileName As String = Path + "PCL\Plain Craft Launcher 2.exe"
-            ' id old new restart
-            Dim text As String = String.Concat(New String() {"--update ", Process.GetCurrentProcess().Id, " """, PathWithName, """ """, fileName, """ ", TriggerRestartAndByEnd})
-            Log("[System] 更新程序启动，参数：" + text, LogLevel.Normal, "出现错误")
-            Process.Start(New ProcessStartInfo(fileName) With {.WindowStyle = ProcessWindowStyle.Hidden, .CreateNoWindow = True, .Arguments = text})
-            If TriggerRestartAndByEnd Then
-                FrmMain.EndProgram(False)
-                Log("[System] 已由于更新强制结束程序", LogLevel.Normal, "出现错误")
-            End If
-        Catch ex As Win32Exception
-            Log(ex, "自动更新时触发 Win32 错误，疑似被拦截", LogLevel.Debug, "出现错误")
-            If MyMsgBox(String.Format("由于被 Windows 安全中心拦截，或者存在权限问题，导致 PCL 无法更新。{0}请将 PCL 所在文件夹加入白名单，或者手动用 {1}PCL\Plain Craft Launcher 2.exe 替换当前文件！", vbCrLf, ModBase.Path), "更新失败", "查看帮助", "确定", "", True, True, False, Nothing, Nothing, Nothing) = 1 Then
-                TryStartEvent("打开帮助", "启动器/Microsoft Defender 添加排除项.json")
-            End If
-        End Try
+        'IsUpdateWaitingRestart = True
+        'Try
+        '    Dim fileName As String = Path + "PCL\Plain Craft Launcher 2.exe"
+        '    ' id old new restart
+        '    Dim text As String = String.Concat(New String() {"--update ", Process.GetCurrentProcess().Id, " """, PathWithName, """ """, fileName, """ ", TriggerRestartAndByEnd})
+        '    Log("[System] 更新程序启动，参数：" + text, LogLevel.Normal, "出现错误")
+        '    Process.Start(New ProcessStartInfo(fileName) With {.WindowStyle = ProcessWindowStyle.Hidden, .CreateNoWindow = True, .Arguments = text})
+        '    If TriggerRestartAndByEnd Then
+        '        FrmMain.EndProgram(False)
+        '        Log("[System] 已由于更新强制结束程序", LogLevel.Normal, "出现错误")
+        '    End If
+        'Catch ex As Win32Exception
+        '    Log(ex, "自动更新时触发 Win32 错误，疑似被拦截", LogLevel.Debug, "出现错误")
+        '    If MyMsgBox(String.Format("由于被 Windows 安全中心拦截，或者存在权限问题，导致 PCL 无法更新。{0}请将 PCL 所在文件夹加入白名单，或者手动用 {1}PCL\Plain Craft Launcher 2.exe 替换当前文件！", vbCrLf, ModBase.Path), "更新失败", "查看帮助", "确定", "", True, True, False, Nothing, Nothing, Nothing) = 1 Then
+        '        TryStartEvent("打开帮助", "启动器/Microsoft Defender 添加排除项.json")
+        '    End If
+        'End Try
     End Sub
     Public Sub UpdateReplace(ProcessId As Integer, OldFileName As String, NewFileName As String, TriggerRestart As Boolean)
-        Try
-            Dim ps = Process.GetProcessById(ProcessId)
-            If Not ps.HasExited Then
-                ps.Kill()
-            End If
-        Catch ex As Exception
-        End Try
-        Dim ex2 As Exception = Nothing
-        Dim num As Integer = 0
-        Do
-            Try
-                If File.Exists(OldFileName) Then
-                    File.Delete(OldFileName)
-                End If
-                If Not File.Exists(OldFileName) Then
-                    Exit Try
-                End If
-            Catch ex3 As Exception
-                ex2 = ex3
-            Finally
-                Thread.Sleep(500)
-            End Try
-            num += 1
-        Loop While num <= 4
-        If (Not File.Exists(OldFileName)) AndAlso File.Exists(NewFileName) Then
-            Try
-                CopyFile(NewFileName, OldFileName)
-            Catch ex4 As UnauthorizedAccessException
-                MsgBox("PCL 更新失败：权限不足。请手动复制 PCL 文件夹下的新版本程序。" & vbCrLf & "若 PCL 位于桌面或 C 盘，你可以尝试将其挪到其他文件夹，这可能可以解决权限问题。" & vbCrLf + GetExceptionSummary(ex4), MsgBoxStyle.Critical, "更新失败")
-            Catch ex5 As Exception
-                MsgBox("PCL 更新失败：无法复制新文件。请手动复制 PCL 文件夹下的新版本程序。" & vbCrLf + GetExceptionSummary(ex5), MsgBoxStyle.Critical, "更新失败")
-                Return
-            End Try
-            If TriggerRestart Then
-                Try
-                    Process.Start(OldFileName)
-                Catch ex6 As Exception
-                    MsgBox("PCL 更新失败：无法重新启动。" & vbCrLf + GetExceptionSummary(ex6), MsgBoxStyle.Critical, "更新失败")
-                End Try
-            End If
-            Return
-        End If
-        If TypeOf ex2 Is UnauthorizedAccessException Then
-            MsgBox(String.Concat(New String() {"由于权限不足，PCL 无法完成更新。请尝试：" & vbCrLf,
-                                 If((Path.StartsWithF(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), False) OrElse Path.StartsWithF(Environment.GetFolderPath(Environment.SpecialFolder.Personal), False)),
-                                 " - 将 PCL 文件移动到桌面、文档以外的文件夹（这或许可以一劳永逸地解决权限问题）" & vbCrLf, ""),
-                                 If(Path.StartsWithF("C", True),
-                                 " - 将 PCL 文件移动到 C 盘以外的文件夹（这或许可以一劳永逸地解决权限问题）" & vbCrLf, ""),
-                                 " - 右键以管理员身份运行 PCL" & vbCrLf & " - 手动复制已下载到 PCL 文件夹下的新版本程序，覆盖原程序" & vbCrLf & vbCrLf,
-                                 GetExceptionSummary(ex2)}), MsgBoxStyle.Critical, "更新失败")
-            Return
-        End If
-        MsgBox("PCL 更新失败：无法删除原文件。请手动复制已下载到 PCL 文件夹下的新版本程序覆盖原程序。" & vbCrLf + GetExceptionSummary(ex2), MsgBoxStyle.Critical, "更新失败")
+        'Try
+        '    Dim ps = Process.GetProcessById(ProcessId)
+        '    If Not ps.HasExited Then
+        '        ps.Kill()
+        '    End If
+        'Catch ex As Exception
+        'End Try
+        'Dim ex2 As Exception = Nothing
+        'Dim num As Integer = 0
+        'Do
+        '    Try
+        '        If File.Exists(OldFileName) Then
+        '            File.Delete(OldFileName)
+        '        End If
+        '        If Not File.Exists(OldFileName) Then
+        '            Exit Try
+        '        End If
+        '    Catch ex3 As Exception
+        '        ex2 = ex3
+        '    Finally
+        '        Thread.Sleep(500)
+        '    End Try
+        '    num += 1
+        'Loop While num <= 4
+        'If (Not File.Exists(OldFileName)) AndAlso File.Exists(NewFileName) Then
+        '    Try
+        '        CopyFile(NewFileName, OldFileName)
+        '    Catch ex4 As UnauthorizedAccessException
+        '        MsgBox("PCL 更新失败：权限不足。请手动复制 PCL 文件夹下的新版本程序。" & vbCrLf & "若 PCL 位于桌面或 C 盘，你可以尝试将其挪到其他文件夹，这可能可以解决权限问题。" & vbCrLf + GetExceptionSummary(ex4), MsgBoxStyle.Critical, "更新失败")
+        '    Catch ex5 As Exception
+        '        MsgBox("PCL 更新失败：无法复制新文件。请手动复制 PCL 文件夹下的新版本程序。" & vbCrLf + GetExceptionSummary(ex5), MsgBoxStyle.Critical, "更新失败")
+        '        Return
+        '    End Try
+        '    If TriggerRestart Then
+        '        Try
+        '            Process.Start(OldFileName)
+        '        Catch ex6 As Exception
+        '            MsgBox("PCL 更新失败：无法重新启动。" & vbCrLf + GetExceptionSummary(ex6), MsgBoxStyle.Critical, "更新失败")
+        '        End Try
+        '    End If
+        '    Return
+        'End If
+        'If TypeOf ex2 Is UnauthorizedAccessException Then
+        '    MsgBox(String.Concat(New String() {"由于权限不足，PCL 无法完成更新。请尝试：" & vbCrLf,
+        '                         If((Path.StartsWithF(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), False) OrElse Path.StartsWithF(Environment.GetFolderPath(Environment.SpecialFolder.Personal), False)),
+        '                         " - 将 PCL 文件移动到桌面、文档以外的文件夹（这或许可以一劳永逸地解决权限问题）" & vbCrLf, ""),
+        '                         If(Path.StartsWithF("C", True),
+        '                         " - 将 PCL 文件移动到 C 盘以外的文件夹（这或许可以一劳永逸地解决权限问题）" & vbCrLf, ""),
+        '                         " - 右键以管理员身份运行 PCL" & vbCrLf & " - 手动复制已下载到 PCL 文件夹下的新版本程序，覆盖原程序" & vbCrLf & vbCrLf,
+        '                         GetExceptionSummary(ex2)}), MsgBoxStyle.Critical, "更新失败")
+        '    Return
+        'End If
+        'MsgBox("PCL 更新失败：无法删除原文件。请手动复制已下载到 PCL 文件夹下的新版本程序覆盖原程序。" & vbCrLf + GetExceptionSummary(ex2), MsgBoxStyle.Critical, "更新失败")
     End Sub
 
 #End Region

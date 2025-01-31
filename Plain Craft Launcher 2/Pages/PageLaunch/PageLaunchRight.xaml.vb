@@ -7,8 +7,8 @@
         PanLog.Visibility = If(ModeDebug, Visibility.Visible, Visibility.Collapsed)
         '社区版提示
         PanHint.Visibility = If(Setup.Get("UiLauncherCEHint"), Visibility.Visible, Visibility.Collapsed)
-        LabHint1.Text = "社区版包含未在官方主线版本发布的功能，仅用于尝鲜。请不要向官方仓库反馈社区版的问题哦！"
-        LabHint2.Text = $"若要永久隐藏此提示，请自行查阅代码中的相关部分。"
+        LabHint1.Text = "自动更新社区版用于适配 McHMR 的自动更新功能，会主动移除非必要功能，例如联机模块。请不要向官方仓库反馈社区版的问题哦！"
+        LabHint2.Text = $"若要永久隐藏此提示，请到设置，启动器设置中进行隐藏。"
     End Sub
 
     '暂时关闭快照版提示

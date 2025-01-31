@@ -4,8 +4,7 @@
 
 [![PCL2作者爱发电](https://img.shields.io/badge/（龙腾猫跃）赞助-爱发电-946ce6?style=flat&labelColor=444444&logoSize=auto)](https://afdian.com/@LTCat)[![McHMR爱发电](https://img.shields.io/badge/（McHMR）赞助-爱发电-946ce6?style=flat&labelColor=444444&logoSize=auto)](https://afdian.com/a/Melon_Studio)
 
-本项目基于 PCL2-CE 开源代码二次开发的游戏客户端自动更新社区版本，支持了 McHMR 的自动更新API。<br/>
-代码会在 PCL2-CE 发布更新时进行主动同步，但来自自动更新功能的代码会保持自己的更新节奏。<br/>
+本项目基于 PCL2-CE 开源代码二次开发的游戏客户端自动更新社区版本，支持了 McHMR 的自动更新API。<br/>会主动移除一些非相关性的功能，例如联机模块等，但来自自动更新功能的代码会保持自己的更新节奏。<br/>
 
 ### 相关资源
 
