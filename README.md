@@ -1,22 +1,18 @@
-# PCL Community Edition
+<p align="center"><img width="144px" src="./logo.svg" /></p>
+<h1 align="center">PCL2 Auto-update Edition</h1>
+<p align="center">Minecraft 服务器客户端热更新解决方案（PCL2分叉启动器项目）</p>
 
-[![Stars](https://img.shields.io/github/stars/PCL-Community/PCL2-CE?style=flat&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHBhdGggZD0iTTggLjI1YS43NS43NSAwIDAgMSAuNjczLjQxOGwxLjg4MiAzLjgxNSA0LjIxLjYxMmEuNzUuNzUgMCAwIDEgLjQxNiAxLjI3OWwtMy4wNDYgMi45Ny43MTkgNC4xOTJhLjc1MS43NTEgMCAwIDEtMS4wODguNzkxTDggMTIuMzQ3bC0zLjc2NiAxLjk4YS43NS43NSAwIDAgMS0xLjA4OC0uNzlsLjcyLTQuMTk0TC44MTggNi4zNzRhLjc1Ljc1IDAgMCAxIC40MTYtMS4yOGw0LjIxLS42MTFMNy4zMjcuNjY4QS43NS43NSAwIDAgMSA4IC4yNVoiIGZpbGw9IiNlYWM1NGYiLz48L3N2Zz4=&logoSize=auto&label=Stars&labelColor=444444&color=eac54f)](https://github.com/PCL-Community/PCL2-CE/)
-[![Issues](https://img.shields.io/github/issues/PCL-Community/PCL2-CE?style=flat&label=Issues&labelColor=444444&color=1F883D)](https://github.com/PCL-Community/PCL2-CE/issues)
-[![哔哩哔哩](https://img.shields.io/badge/动态-BiliBili-00A4DB?style=flat&labelColor=444444&logoSize=auto)](https://space.bilibili.com/11343203/dynamic)
-[![爱发电](https://img.shields.io/badge/赞助-爱发电-946ce6?style=flat&labelColor=444444&logoSize=auto)](https://afdian.com/@LTCat)
+[![PCL2作者爱发电](https://img.shields.io/badge/（龙腾猫跃）赞助-爱发电-946ce6?style=flat&labelColor=444444&logoSize=auto)](https://afdian.com/@LTCat)[![McHMR爱发电](https://img.shields.io/badge/（McHMR）赞助-爱发电-946ce6?style=flat&labelColor=444444&logoSize=auto)](https://afdian.com/a/Melon_Studio)
 
-基于 PCL2 开源代码二次开发的社区版本，包括了主线暂未制作的功能和改进！<br/>
-代码会在主线发布更新时与主线同步一次，但来自社区的功能会保持自己的更新节奏。<br/>
-同时需注意，社区版的版本号与主线并非严格对应关系。<br/>
-欢迎大家来用用看！
-
-<br/>
-
-### 隐藏提示
-
-在注册表项中添加 "UiLauncherCEHint" 字符串值，值设置为 False 即可
+本项目基于 PCL2-CE 开源代码二次开发的游戏客户端自动更新社区版本，支持了 McHMR 的自动更新API。<br/>
+代码会在 PCL2-CE 发布更新时进行主动同步，但来自自动更新功能的代码会保持自己的更新节奏。<br/>
 
 ### 相关资源
+
 - [PCL 社区版下载](https://github.com/PCL-Community/PCL2-CE/releases)：下载来自本存储库的 PCL2 社区版！
 - [PCL 官方存储库](https://github.com/Hex-Dragon/PCL2)：PCL 的官方开源代码存储库
 - [帮助文档库](https://github.com/LTCatt/PCL2Help)：PCL 内置帮助文档的存储库
+
+## 开源许可证
+
+本仓库挂靠在PCL2主仓库自定义许可证下，再做二次分发时应该同样包含此许可证，请详细阅读开源许可证并遵守其规则。
