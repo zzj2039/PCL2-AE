@@ -1,4 +1,4 @@
-<p align="center"><img width="144px" src="./logo.svg" /></p>
+<p align="center"><img width="144px" src="https://github.com/Melon-Studio/PCL2-AE/blob/main/logo.png" /></p>
 <h1 align="center">PCL2 Auto-update Edition</h1>
 <p align="center">Minecraft 服务器客户端热更新解决方案（PCL2分叉启动器项目）</p>
 
